@@ -1,18 +1,13 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from strength_standards.quickstart.models import PersonalRecord
+from strength_standards.personal_records.models import PersonalRecord
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ('url', 'username', 'email', 'groups')
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Group
-        fields = ('url', 'name')
-
 class PersonalRecordSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PersonalRecord
-        fields = ('url', 'name', 'weight', 'reps', 'date', 'user')
+        fields = ('url', 'exercise', 'weight', 'reps', 'date', 'user')
