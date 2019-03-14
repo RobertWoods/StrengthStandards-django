@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.urls import include, path
 from rest_framework import routers
+from rest_framework.authtoken import views as authviews
 from strength_standards.personal_records import views
 
 router = routers.DefaultRouter()
@@ -23,5 +24,6 @@ router.register(r'personalRecords', views.PersonalRecordViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api-token-auth/', authviews.obtain_auth_token)
 ]
